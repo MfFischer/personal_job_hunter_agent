@@ -1,0 +1,13 @@
+Dear Hiring Team at Adoreal,
+
+I am excited to apply for the Senior Web Developer position. Adoreal’s mission to transform elective medicine through disruptive SaaS technology resonates with my background in building high-stakes, regulated platforms. 
+
+With over 18 years of experience, I offer a unique blend of high-level strategic leadership and hands-on technical execution. Having scaled SaaS products from the ground up and led globally-dispersed teams, I am well-prepared to manage your web development roadmap and mentor your growing team. My experience in regulated environments ensures that I prioritize the precision and reliability required for elective medicine.
+
+While my deep technical background is in full-stack engineering, I view Webflow and Figma as powerful extensions of a developer’s toolkit. My command of web architecture, SEO, and performance optimization allows me to approach the Webflow ecosystem with a level of rigor that ensures scalability and pixel-perfect results. I am a fast learner of automation tools like Zapier and Make, and I have a proven track record of executing complex platform migrations and system integrations in fast-paced startup environments.
+
+I thrive in ambiguous, high-growth settings where the goal is to move quickly without sacrificing quality. I am eager to bring my technical maturity and leadership experience to Adoreal to help automate your workflows and scale your web properties.
+
+Thank you for your time and consideration. I look forward to the possibility of discussing how my background can support Adoreal’s continued success.
+
+Best regards,

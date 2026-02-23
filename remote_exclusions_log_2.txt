@@ -1,0 +1,8 @@
+Top Exclusion Reasons (All Time):
+ - [44] Layer 1: Detected Forbidden Location/Mode (US/Hybrid/Onsite)
+ - [26] Layer 1: Detected Sales/Non-Technical Role
+ - [21] Layer 1: No matching profile keywords (Stack/Roles) found in job text.
+ - [2] Mismatch: Job is for java, but not in profile.
+ - [1] Mismatch: Job is for ruby, but not in profile.
+ - [1] Mismatch: Job is for php, but not in profile.
+ - [1] Mismatch: Job is for go, but not in profile.

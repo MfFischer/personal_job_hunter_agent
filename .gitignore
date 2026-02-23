@@ -1,0 +1,25 @@
+# .env
+.env
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+# Resumes and generated profiles
+assets/*.pdf
+assets/*.txt
+assets/*.docx
+data/profile.json
+data/jobs.db
+data/*.json
+# Logs
+*.log
+# IDEs
+.vscode/
+.idea/
+# Python cache
+__pycache__/
+*.pyc
+# OS generated
+.DS_Store

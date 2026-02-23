@@ -1,0 +1,11 @@
+I am writing to express my strong interest in the Freelance Senior Python Developer position at Mindrift. With over 18 years of technical experience and a background in building high-stakes, regulated SaaS platforms, I am eager to contribute to your mission of improving AI systems through robust functional testing.
+
+Throughout my career, I have maintained a deep, hands-on mastery of Python and containerization. Having built architectures from the ground up, I am an expert in creating the secure, reproducible Docker environments and complex bash-scripted workflows your project requires. My experience in regulated industries ensures that I naturally align with Mindrift’s need for benchmark-level code quality and rigorous automated scoring criteria.
+
+While my recent background includes technical leadership, I am applying specifically to return to high-impact, hands-on engineering within the AI space. I am highly proficient in modern Python tooling (including uv and pyproject.toml) and am an early adopter of AI-assisted development. I am comfortable using LLMs to accelerate iterative cycles and have the linguistic versatility to read and translate code across C, Rust, and Go to meet migration requirements.
+
+I thrive in autonomous, project-based environments and am excited by the granular, task-oriented nature of black-box testing and agent evaluation. I am a native/fluent English speaker (C2 proficiency) and am ready to contribute 20–30 hours per week to help scale Mindrift’s testing frameworks.
+
+I look forward to the possibility of discussing how my technical depth can support your current AI initiatives.
+
+Best regards,

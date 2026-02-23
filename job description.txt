@@ -1,0 +1,310 @@
+Project Title
+
+AI Personal Remote Job Hunter Assistant
+
+📌 1️⃣ Project Overview
+
+The AI Personal Remote Job Hunter Assistant is a private automation system hosted on your VPS that:
+
+Automatically searches for 100% remote job opportunities daily
+
+Filters roles based on your resume and preferences
+
+Ranks job relevance using AI
+
+Detects language (German vs English)
+
+Selects the correct CV automatically
+
+Generates tailored cover letters for the top matches
+
+Sends a structured daily summary email
+
+It is designed to:
+
+Save time
+
+Improve application quality
+
+Avoid mass-application spam
+
+Stay compliant with job platform policies
+
+Operate at near-zero cost using free AI tiers
+
+This is a personal productivity system first, with optional future SaaS potential.
+
+🎯 2️⃣ Objectives
+Primary Goals
+
+Automate job discovery
+
+Increase relevance of applications
+
+Reduce manual searching time
+
+Maintain high-quality, tailored applications
+
+Operate within free or minimal-cost infrastructure
+
+Secondary Goals
+
+Track application history
+
+Build analytics around job matches
+
+Potentially evolve into a micro-SaaS product
+
+🏗️ 3️⃣ System Architecture (High-Level)
+Layer 1 — Job Discovery Engine
+
+Function: Collect job listings daily.
+
+Sources:
+
+Public job board listings
+
+Company career pages
+
+RSS feeds
+
+Remote job boards
+
+Filters:
+
+100% remote only
+
+Relevant tech stack
+
+Desired seniority level
+
+Geographic compatibility (EU / global remote)
+
+Output:
+
+Raw job listings stored in database
+
+
+No login automation. No credential scraping.
+
+Layer 2 — Rule-Based Filtering (Cost-Free Layer)
+
+Before using AI, apply deterministic filtering:
+
+Keyword scoring (Python, AWS, TypeScript, SaaS, etc.)
+
+Exclude “onsite” roles
+
+Exclude junior/irrelevant seniority
+
+Remove duplicates
+
+Check already-applied history
+
+Output:
+
+Top ~20 candidate jobs per day
+
+
+This keeps AI usage minimal.
+
+Layer 3 — AI Relevance Scoring
+
+Use free-tier AI (e.g., Gemini) to:
+
+Analyze job description
+
+Compare with structured resume profile
+
+Generate:
+
+Match score (0–100%)
+
+Strength analysis
+
+Missing skill insights
+
+Language detection
+
+Only applied to filtered jobs (not all scraped jobs).
+
+Output:
+
+Ranked job list with match insights
+
+Layer 4 — Document Intelligence
+
+For the Top 3 matches daily:
+
+Detect job language
+
+Select:
+
+German CV (if job in German)
+
+English CV (if job in English)
+
+Generate tailored cover letter
+
+Optionally adjust summary paragraph in CV
+
+Optimization:
+
+Use structured resume data to reduce token usage
+
+Keep prompts short and focused
+
+Layer 5 — Notification & Delivery
+
+Send daily structured email via:
+
+Hostinger SMTP (e.g., jobs@agosidentity.com
+)
+
+Email includes:
+
+Top 3 jobs (with cover letters attached)
+
+Next 7–10 ranked jobs (without cover letters)
+
+Direct application links
+
+Match score explanation
+
+You manually review and apply.
+
+🗃️ 4️⃣ Data Components
+Database (Simple Schema)
+
+Tables:
+
+jobs (id, title, company, description, url, date_found)
+
+job_scores (job_id, score, reasoning)
+
+applications (job_id, applied_status, date_applied)
+
+daily_reports (date, summary_sent)
+
+⚙️ 5️⃣ Infrastructure Setup
+
+VPS (already available)
+
+Python runtime
+
+Cron job (runs once daily)
+
+SQLite or lightweight Postgres
+
+Gemini free API
+
+Hostinger SMTP email sending
+
+No domain required beyond existing email.
+No public website required.
+
+💰 6️⃣ Cost Structure
+
+Optimized Mode:
+
+Component	Cost
+VPS	Already paid
+Email	Already paid
+Scraping	€0
+Gemini free tier	€0
+Total	~€0/month
+
+If scaling beyond free tier:
+Estimated €5–30/month.
+
+🔐 7️⃣ Compliance & Risk Mitigation
+
+The system:
+
+Does NOT auto-login into job platforms
+
+Does NOT auto-submit applications
+
+Does NOT bypass authentication systems
+
+Avoids scraping private areas
+
+Avoids mass application spam
+
+Applications remain manual.
+
+🚀 8️⃣ Future Expansion Possibilities
+Personal Enhancements
+
+Application tracking dashboard
+
+Recruiter contact finder
+
+Salary estimation
+
+Interview prep generator
+
+Resume optimization scoring
+
+Productization Potential
+
+SaaS for remote job seekers
+
+Multi-language CV automation
+
+AI career assistant subscription
+
+📈 9️⃣ Strategic Value
+
+This project:
+
+Demonstrates automation + AI capability
+
+Strengthens your backend engineering portfolio
+
+Builds AI system orchestration skills
+
+Can evolve into monetizable product
+
+Directly improves your job search performance
+
+It aligns with your:
+
+Backend expertise
+
+Infrastructure knowledge
+
+AI experimentation
+
+SaaS mindset
+
+🧠 10️⃣ Operational Model
+
+Daily Flow:
+
+Scrape jobs
+
+Rule-filter
+
+AI score
+
+Generate top 3 cover letters
+
+Send daily email report
+
+Manual application
+
+Runtime:
+~5–15 minutes per day
+
+🏁 Final Positioning
+
+This is not a bot that replaces effort.
+
+It is a decision-acceleration system.
+
+It shifts you from:
+“Scrolling job boards for 1–2 hours daily”
+
+To:
+“Reviewing a curated shortlist in 5 minutes”
