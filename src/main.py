@@ -108,6 +108,11 @@ def main():
         for job in candidates:
             logging.info(f"Analyzing: {job['title']}...")
             result = analyze_job_relevance(job['description'], CANDIDATE_PROFILE)
+            
+            if result is None:
+                logging.error(f"AI Analysis failed for {job['title']}. Skipping this job for today.")
+                continue
+                
             db_manager.increment_ai_usage() # Log the API call
             
             # --- LAYER 2: AI FILTER ---

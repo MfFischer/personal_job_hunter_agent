@@ -49,7 +49,7 @@ def send_daily_digest(limit=30, to_email="afefischer@gmail.com"):
         score = job['ai_match_score']
         analysis = json.loads(job['ai_analysis_json']) if job['ai_analysis_json'] else {}
         domain = analysis.get('job_domain', 'General')
-        cover_letter = job.get('cover_letter_text', '')
+        cover_letter = job.get('cover_letter_text') or ''
 
         # --- SMART FEATURES ---
         # 1. Extract Email for Mailto

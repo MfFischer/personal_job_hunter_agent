@@ -76,9 +76,10 @@ def generate_cover_letter(job_data: dict, analysis_results: dict, candidate_prof
     5. CANDIDATE PROFILE:
      Core Industries: {', '.join(candidate_profile.get('industries', []))}
      Experience Summary: {candidate_profile.get('experience_summary')}
+     Experience Breakdown: {', '.join([f"{k}: {v}" for k, v in candidate_profile.get('experience_breakdown', {}).items()]) if candidate_profile.get('experience_breakdown') else 'Not provided'}
 
     ## CRITICAL SAFEGUARDS
-    1. **NO SENIORITY INFLATION**: Do NOT exaggerate leadership level or years of experience. Stick strictly to the "Experience Summary".
+    1. **NO SENIORITY/EXPERIENCE INFLATION**: Do NOT exaggerate years of experience in specific skills. If applying for a software engineering role, do NOT claim '18 years of software engineering' if the breakdown says otherwise. Stick strictly to the "Experience Breakdown" for specific domains, and only use "Experience Summary" for holistic framing.
     2. **NO FABRICATION**: Do NOT invent achievements, technologies, or experience not provided.
     3. **DOMAIN HONESTY**: If 'JOB DOMAIN' mismatches Candidate 'Core Industries', use "PIVOT" framing.
     4. **FORMAT**: Output ONLY the cover letter text. NO markdown (no bold/italics), NO explanations, NO "Here is the cover letter:" preambles.
@@ -96,7 +97,7 @@ def generate_cover_letter(job_data: dict, analysis_results: dict, candidate_prof
     """
 
     try:
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(prompt)
         return response.text.strip()
 

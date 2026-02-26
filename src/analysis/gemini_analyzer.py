@@ -30,10 +30,14 @@ def analyze_job_relevance(job_description: str, resume_profile: dict) -> JobAnal
     if not skills:
         skills = resume_profile.get('skills', [])
 
+    exp_breakdown = resume_profile.get('experience_breakdown', {})
+    exp_breakdown_str = ", ".join([f"{k}: {v}" for k, v in exp_breakdown.items()]) if exp_breakdown else "Not provided"
+
     profile_str = f"""
     SKILLS: {", ".join(skills)}
     ROLES: {", ".join(resume_profile.get('core_roles', []))}
-    EXPERIENCE: {resume_profile.get('experience_summary', '')}
+    EXPERIENCE SUMMARY: {resume_profile.get('experience_summary', '')}
+    EXPERIENCE BREAKDOWN: {exp_breakdown_str}
     INDUSTRIES: {", ".join(resume_profile.get('industries', []))}
     PREFERENCES: {resume_profile.get('preferred_environment', 'Remote')}
     """
@@ -47,6 +51,7 @@ def analyze_job_relevance(job_description: str, resume_profile: dict) -> JobAnal
     1. LOCATION: If job is strict "US Only" or "North America Only" and Candidate is NOT in US -> Score = 0.
     2. ROLE: If job is "Sales", "Business Development", or "Account Executive" (Non-Technical) -> Score = 0 (Mismatch).
     3. STACK: If job requires a specific stack (e.g. Ruby, Java) that is NOT in Candidate SKILLS -> Penalize heavily.
+    4. EXPERIENCE RELEVANCE: The candidate has a diverse background. When evaluating if they meet a job's "Years of Experience" requirement, YOU MUST ONLY count the years from the specific relevant field in EXPERIENCE BREAKDOWN (e.g., do not use 10 years of founder experience to fulfill a 5-year software engineering requirement). If they lack the required years in the specific field, lower their score.
 
     Task:
     1. Determine the language of the job posting (DE or EN).
@@ -83,27 +88,32 @@ def analyze_job_relevance(job_description: str, resume_profile: dict) -> JobAnal
     }}
     """
 
-    try:
-        model = genai.GenerativeModel('gemini-2.0-flash') # Use Flash for speed/cost efficiency
-        response = model.generate_content(
-            prompt,
-            generation_config={"response_mime_type": "application/json"}
-        )
-        
-        # Parse JSON
-        analysis = json.loads(response.text)
-        return analysis
+    import time
+    from google.api_core.exceptions import ResourceExhausted
 
-    except Exception as e:
-        print(f"Error analyzing job: {e}")
-        return {
-            "match_score": 0,
-            "pros": [],
-            "cons": ["Error during AI analysis"],
-            "missing_skills": [],
-            "language": "EN", # Default
-            "job_domain": "General"
-        }
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            model = genai.GenerativeModel('gemini-2.5-flash') # Use Flash for speed/cost efficiency
+            response = model.generate_content(
+                prompt,
+                generation_config={"response_mime_type": "application/json"}
+            )
+            
+            # Parse JSON
+            analysis = json.loads(response.text)
+            return analysis
+
+        except ResourceExhausted as e:
+            print(f"Rate Limit Hit (429) on attempt {attempt + 1}. Sleeping for 60s...")
+            time.sleep(60)
+            if attempt == max_retries - 1:
+                print("Max retries reached. Failing this job.")
+                return None
+        except Exception as e:
+            print(f"Error analyzing job: {e}")
+            # Return None so the upstream knows it failed and doesn't permanently write score 0
+            return None
 
 # Example of a "Compressed Profile" for Token Optimization
 # This avoids sending a 4-page PDF. 

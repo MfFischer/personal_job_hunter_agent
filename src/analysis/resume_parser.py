@@ -56,6 +56,11 @@ def parse_resumes_to_profile(assets_dir: str = None) -> dict:
               "3-5 specific, high-intent search queries for job boards (e.g., 'Python Backend Remote EU')"
           ],
           "experience_summary": "A concise 2-3 sentence professional summary suitable for a cover letter intro.",
+          "experience_breakdown": {
+              "Software Engineering": "X years",
+              "Project Management": "Y years",
+              "Founder/Entrepreneurship": "Z years"
+          },
           "languages": ["English", "German (Native/Fluent/Basic)", etc.]
         }
         """
